@@ -11,7 +11,7 @@ public @Slf4j class BatteryMonitor {
     private static String SHUTDOWN_COMMAND = "sudo shutdown now";
 
     //TODO Add support to send parameters by command line
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(final String... args) throws ExecutionException, InterruptedException {
 
         final ExecutorService executorService = Executors.newSingleThreadExecutor();
         final Future<Double> callFuture = executorService.submit(new Monitor(DEFAULT_VOLTAGE_THRESHOLD));
