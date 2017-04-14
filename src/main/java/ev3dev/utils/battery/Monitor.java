@@ -1,6 +1,5 @@
 package ev3dev.utils.battery;
 
-import ev3dev.sensors.Battery;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -29,7 +28,6 @@ public @Slf4j class Monitor implements Callable<Double> {
                     .average()
                     .getAsDouble();
             log.trace("Current voltage: {}, Threshold: {}", currentVoltage, threshold);
-
             if (currentVoltage < threshold) {
                 break;
             }
@@ -37,10 +35,12 @@ public @Slf4j class Monitor implements Callable<Double> {
         return currentVoltage;
     }
 
-    private List<Double> getVoltages(){
+    public List<Double> getVoltages(){
+        //final Power power = Battery.getInstance();
         final List<Double> voltageList = new ArrayList<>();
         for(int x = 0; x < DEFAULT_MEASURES; x++){
-            voltageList.add(Double.valueOf(Battery.getInstance().getVoltage()));
+            voltageList.add(Double.valueOf(10000f));
+            //voltageList.add(Double.valueOf(power.getVoltage()));
         }
         return voltageList;
     }
