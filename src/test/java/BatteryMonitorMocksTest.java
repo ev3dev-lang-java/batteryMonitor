@@ -17,16 +17,11 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class BatteryMonitorMocksTest {
 
-    @Before
-    public void doBeforeEachTest() throws Exception {
-        MockitoAnnotations.initMocks(this);
-    }
-
     @Test
     public void test() throws Exception {
 
         BatteryMonitor batteryMonitor = new BatteryMonitor();
-        
+
         Monitor monitor = Mockito.mock(Monitor.class);
         final List<Double> voltageList = new ArrayList<>();
         voltageList.add(10000000d);
