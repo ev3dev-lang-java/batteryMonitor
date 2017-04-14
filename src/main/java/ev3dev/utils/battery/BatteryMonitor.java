@@ -10,14 +10,15 @@ public @Slf4j class BatteryMonitor {
     private static int DEFAULT_VOLTAGE_THRESHOLD = 7500000;
     private static String SHUTDOWN_COMMAND = "sudo shutdown now";
 
-    public BatteryMonitor(){
+    final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    final Future<Double> callFuture;
 
+    public BatteryMonitor(final Monitor monitor){
+        callFuture = executorService.submit(monitor);
     }
 
     public boolean init() throws ExecutionException, InterruptedException {
 
-        final ExecutorService executorService = Executors.newSingleThreadExecutor();
-        final Future<Double> callFuture = executorService.submit(new Monitor(DEFAULT_VOLTAGE_THRESHOLD));
         final Double voltage = callFuture.get();
 
         log.info("Current voltage:" + voltage);
@@ -31,7 +32,8 @@ public @Slf4j class BatteryMonitor {
     //TODO Add support to send parameters by command line
     public static void main(final String... args) throws ExecutionException, InterruptedException {
 
-        BatteryMonitor batteryMonitor = new BatteryMonitor();
+        Monitor monitor = new Monitor(DEFAULT_VOLTAGE_THRESHOLD);
+        BatteryMonitor batteryMonitor = new BatteryMonitor(monitor);
         batteryMonitor.init();
     }
 
