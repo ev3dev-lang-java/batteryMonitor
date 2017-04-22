@@ -52,6 +52,45 @@ to do it, it is simple. Create a new logback.xml file:
         </encoder>
     </appender>
 
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file> log-${byDay}.log </file>
+        <append>true</append>
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>192.168.1.100:5000</destination>
+
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <mdc/>
+                <context/>
+                <version/>
+                <logLevel/>
+                <loggerName/>
+
+                <pattern>
+                    <pattern>
+                        {
+                            "appName": "elk-ev3-batteryMonitor",
+                            "appVersion": "0.1.0"
+                        }
+                    </pattern>
+                </pattern>
+
+                <threadName/>
+                <message/>
+                <logstashMarkers/>
+                <arguments/>
+                <stackTrace/>
+            </providers>
+        </encoder>
+    </appender>
+
     <logger name="ch.qos.logback.core" level="OFF" />
     <logger name="ev3dev.hardware" level="OFF" />
     <logger name="ev3dev.utils" level="OFF" />
@@ -59,13 +98,17 @@ to do it, it is simple. Create a new logback.xml file:
 
     <root level="TRACE">
         <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STASH"/>
     </root>
 
 </configuration>
-``` 
+```
 
 and later execute the jar with the following parameter:
 
 ```
 robot@ev3dev:~$ java -server -Dlogback.configurationFile=/home/robot/logback.xml -jar batteryMonitor-all-0.1.0-SNAPSHOT.jar
-``
+```
+
+Further information about Logback configuration here:
+https://logback.qos.ch/manual/configuration.html
