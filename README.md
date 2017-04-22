@@ -36,12 +36,12 @@ mkdir batteryMonitor
 ``` bash
 git clone https://github.com/ev3dev-lang-java/batteryMonitor.git
 ./gradlew clean fatjar
-scp ./build/libs/batteryMonitor-all-0.1.0-SNAPSHOT.jar robot@192168.1.85:/home/robot/batteryMonitor
+scp ./build/libs/batteryMonitor-all-0.1.0.jar robot@192168.1.85:/home/robot/batteryMonitor
 scp ./scripts/logback.xml robot@192168.1.85:/home/robot/batteryMonitor
 scp ./scripts/stop.sh robot@192168.1.85:/home/robot/batteryMonitor
 scp ./scripts/start.sh robot@192168.1.85:/home/robot/batteryMonitor
 scp ./scripts/batteryMonitor-service.sh robot@192168.1.85:/etc/init.d
-robot@ev3dev:~$ java -server -jar batteryMonitor-all-0.1.0-SNAPSHOT.jar
+robot@ev3dev:~$ java -server -jar batteryMonitor-all-0.1.0.jar
 ```
 
 *Brick side*
@@ -139,7 +139,7 @@ to do it, it is simple. Create a new logback.xml file:
 and later execute the jar with the following parameter:
 
 ```
-robot@ev3dev:~$ java -server -Dlogback.configurationFile=/home/robot/batteryMonitor/logback.xml -jar batteryMonitor-all-0.1.0-SNAPSHOT.jar
+robot@ev3dev:~$ java -server -Dlogback.configurationFile=/home/robot/batteryMonitor/logback.xml -jar batteryMonitor-all-0.1.0.jar
 ```
 
 Further information about Logback configuration here:
