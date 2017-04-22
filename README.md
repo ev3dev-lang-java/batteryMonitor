@@ -1,7 +1,7 @@
 # batteryMonitor
 A Java Battery monitor for EV3Dev hardware.
 
-# Gherkin User Stories
+# User Story
 
 ``` gherkin
 Feature: Develop a Java Battery Monitor process to protect Hardware.
