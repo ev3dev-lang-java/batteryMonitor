@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public @Slf4j class BatteryTask implements Callable<Boolean> {
 
-    private static int DEFAULT_VOLTAGE_THRESHOLD = 8000;
+    private static int DEFAULT_VOLTAGE_THRESHOLD = 7500;
     private static int DEFAULT_VOLTAGE_MEASURE_INTERVAL = 1;
     private static final int DEFAULT_MEASURES = 10;
 
