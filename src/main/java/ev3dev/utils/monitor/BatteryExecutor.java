@@ -35,7 +35,7 @@ public @Slf4j class BatteryExecutor {
 
     private void action(){
         log.debug("Executing action: {}", COMMAND_SHUTDOWN);
-        Shell.execute(COMMAND_SHUTDOWN);
+        //Shell.execute(COMMAND_SHUTDOWN);
     }
 
 }
