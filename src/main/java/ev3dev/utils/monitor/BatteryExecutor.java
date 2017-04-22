@@ -7,7 +7,7 @@ import java.util.concurrent.*;
 
 public @Slf4j class BatteryExecutor {
 
-    private String COMMAND_SHUTDOWN = "sudo shutdown now";
+    private final String COMMAND_SHUTDOWN = "sudo shutdown now";
 
     final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
@@ -35,7 +35,7 @@ public @Slf4j class BatteryExecutor {
 
     private void action(){
         log.debug("Executing action: {}", COMMAND_SHUTDOWN);
-        //Shell.execute(COMMAND_SHUTDOWN);
+        Shell.execute(COMMAND_SHUTDOWN);
     }
 
 }

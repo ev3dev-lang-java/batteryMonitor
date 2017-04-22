@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+
     <timestamp key="byDay" datePattern="yyyyMMdd'T'HHmmss"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -20,6 +21,7 @@
         </encoder>
     </appender>
 
+    <!--
     <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>192.168.1.100:5000</destination>
 
@@ -48,14 +50,18 @@
             </providers>
         </encoder>
     </appender>
+    -->
 
+    <logger name="ch.qos.logback.classic" level="OFF" />
     <logger name="ch.qos.logback.core" level="OFF" />
+
     <logger name="ev3dev.hardware" level="OFF" />
     <logger name="ev3dev.utils" level="OFF" />
     <logger name="ev3dev.utils.monitor" level="TRACE" />
 
     <root level="TRACE">
         <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
     </root>
 
     <shutdownHook/>

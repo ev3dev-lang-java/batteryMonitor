@@ -42,7 +42,7 @@ to do it, it is simple. Create a new logback.xml file:
 
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
+<configuration scan="true" scanPeriod="60 seconds">
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -53,7 +53,7 @@ to do it, it is simple. Create a new logback.xml file:
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file> log-${byDay}.log </file>
+        <file>/home/robot/batteryMonitor/logs/log-${byDay}.log </file>
         <append>true</append>
         <encoder>
             <pattern>
@@ -107,8 +107,19 @@ to do it, it is simple. Create a new logback.xml file:
 and later execute the jar with the following parameter:
 
 ```
-robot@ev3dev:~$ java -server -Dlogback.configurationFile=/home/robot/logback.xml -jar batteryMonitor-all-0.1.0-SNAPSHOT.jar
+robot@ev3dev:~$ java -server -Dlogback.configurationFile=/home/robot/batteryMonitor/logback.xml -jar batteryMonitor-all-0.1.0-SNAPSHOT.jar
 ```
 
 Further information about Logback configuration here:
+
 https://logback.qos.ch/manual/configuration.html
+
+## Logs
+
+```
+tail -f -n10 ./logs/log-20170422T205431.log
+```
+
+## Services
+
+
