@@ -29,7 +29,7 @@ public @Slf4j class BatteryExecutor {
 
     private void threadPoolShutdown() throws InterruptedException {
         log.debug("Thread Pool Shutdown");
-        executorService.awaitTermination(10, TimeUnit.SECONDS);
+        executorService.awaitTermination(5, TimeUnit.SECONDS);
         executorService.shutdownNow();
     }
 

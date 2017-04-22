@@ -33,7 +33,7 @@ public @Slf4j class BatteryTask implements Callable<Boolean> {
         while(voltageFlag) {
 
             currentVoltage = this.getVoltageAverage();
-            log.trace("Current voltage: {}, Threshold: {}", currentVoltage, threshold);
+            log.debug("Current voltage: {}, Threshold: {}", currentVoltage, threshold);
 
             if (currentVoltage < threshold) {
                 break;
@@ -46,7 +46,7 @@ public @Slf4j class BatteryTask implements Callable<Boolean> {
 
             Thread.sleep(DEFAULT_VOLTAGE_MEASURE_INTERVAL);
         }
-        log.trace("Returning the control to main Thread");
+        log.debug("Returning the control to main Thread");
         return true;
     }
 
@@ -62,7 +62,6 @@ public @Slf4j class BatteryTask implements Callable<Boolean> {
     private List<Double> getVoltages(){
         final List<Double> voltageList = new ArrayList<>();
         for(int x = 0; x < DEFAULT_MEASURES; x++){
-            //voltageList.add(10000000d);
             voltageList.add(Double.valueOf(battery.getVoltage()));
         }
         return voltageList;

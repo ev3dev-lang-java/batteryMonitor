@@ -28,5 +28,44 @@ the following steps on your host:
 ``` bash
 git clone https://github.com/ev3dev-lang-java/batteryMonitor.git
 ./gradlew clean fatjar
-scp ./build/libs/batteryMonitor-all-0.1.0-SNAPSHOT.jar robot@YOUR_IP:/home/robot/
+scp ./build/libs/batteryMonitor-all-0.1.0-SNAPSHOT.jar robot@192168.1.85:/home/robot/
+robot@ev3dev:~$ java -server -jar batteryMonitor-all-0.1.0-SNAPSHOT.jar
 ```
+
+# Customize logging
+
+EV3Dev-lang-java uses Logback as the default logging system and 
+the project includes a default configuration. 
+
+If you need to execute the project with another configuration the way 
+to do it, it is simple. Create a new logback.xml file:
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="ch.qos.logback.core" level="OFF" />
+    <logger name="ev3dev.hardware" level="OFF" />
+    <logger name="ev3dev.utils" level="OFF" />
+    <logger name="ev3dev.utils.monitor" level="TRACE" />
+
+    <root level="TRACE">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
+``` 
+
+and later execute the jar with the following parameter:
+
+```
+robot@ev3dev:~$ java -server -Dlogback.configurationFile=/home/robot/logback.xml -jar batteryMonitor-all-0.1.0-SNAPSHOT.jar
+``
