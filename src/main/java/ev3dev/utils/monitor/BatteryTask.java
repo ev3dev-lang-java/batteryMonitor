@@ -1,8 +1,6 @@
 package ev3dev.utils.monitor;
 
 import lombok.extern.slf4j.Slf4j;
-import ev3dev.sensors.Battery;
-import lejos.hardware.Power;
 
 import java.util.ArrayList;
 import java.util.List;

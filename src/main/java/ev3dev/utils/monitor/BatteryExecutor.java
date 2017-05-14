@@ -1,7 +1,7 @@
 package ev3dev.utils.monitor;
 
-import lombok.extern.slf4j.Slf4j;
 import ev3dev.utils.Shell;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.*;
 
