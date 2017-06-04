@@ -1,11 +1,13 @@
 package ev3dev.utils.monitor;
 
 import ev3dev.utils.Shell;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.util.concurrent.*;
 
-public @Slf4j class BatteryExecutor {
+public class BatteryExecutor {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BatteryMonitorApp.class);
 
     private final String COMMAND_SHUTDOWN = "sudo shutdown now";
 

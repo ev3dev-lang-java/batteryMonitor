@@ -1,13 +1,15 @@
 package ev3dev.utils.monitor;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
-public @Slf4j class BatteryTask implements Callable<Boolean> {
+public class BatteryTask implements Callable<Boolean> {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BatteryTask.class);
 
     private static int DEFAULT_VOLTAGE_THRESHOLD = 7500;
     private static int DEFAULT_VOLTAGE_MEASURE_INTERVAL = 1;
