@@ -5,7 +5,7 @@
 
 case $1 in
     start)
-        /bin/bash /home/robot/batteryMonitor/start.sh
+        /bin/bash /home/robot/batteryMonitor/start.sh  >> /home/robot/batteryMonitor/logs/log.txt &
     ;;
     stop)
         /bin/bash /home/robot/batteryMonitor/stop.sh

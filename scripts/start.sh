@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "platform.sh"
+source "/home/robot/batteryMonitor/platform.sh"
 
 if [ "$PLATFORM" == "$EV3" ]; then
     echo "Executing a Script for EV3"
